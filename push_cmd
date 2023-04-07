@@ -1,0 +1,26 @@
+#!/bin/bash
+
+declare -r remote_repo="git@github.com:nishchayrat/employee.git"
+declare -r remote_repo_name="employee_react"
+
+current_remote_origin=$((git remote -v) | head -n 1)
+
+current_remote_name=$(echo "$current_remote_origin" | awk '{print $1}')
+
+
+if [ "$current_remote_name" != "employee_react" ]
+then
+	if [ ! -z "$current_remote_name" ]
+	then
+		echo "removing the remote $current_remote_origin"
+		sleep 2
+		git remote remove "$current_remote_name";
+	fi
+	git remote add "$remote_repo_name" "$remote_repo"
+else
+	git add .
+	sleep 3;
+	git commit -m "$1"
+	git sleep 3;
+	git push;
+fi
