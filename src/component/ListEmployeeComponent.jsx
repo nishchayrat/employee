@@ -11,14 +11,13 @@ class ListEmployeeComponent extends Component {
 
     componentDidMount(){
         EmployeeService.getEmployee().then((res) =>{
-            console.log(res.data);
-            this.setState({employee : res.data});
+            this.setState({employees : res.data});
         });
     }
 
     render() {
         return (
-            <div className="employees-list">
+            <div>
                 <h2 className='text-center'>Employee List</h2>
 
                 <div className='row'>
